@@ -9,7 +9,7 @@ services:
   catalogue:
     build: ./Catalouge
     image: roboshop/catalogue:v1
-    container_name: catalogue
+    container_name: catalouge
     depends_on:
       - mongodb
   frontend:

@@ -2,19 +2,19 @@ name: roboshop
 services:
   mongodb:
     build: ./Mongodb
-    image: joindevops/mongodb:4.0.0 # docker build -t joindevops/mongodb:4.0.0
+    image: roboshop/mongodb:v1 # docker build -t joindevops/mongodb:4.0.0
     container_name: mongodb # docker run -d --network roboshop joindevops/mongodb:4.0.0
     volumes:
       - mongodb:/data/db # mongodb stores data in /data/db directory
   catalogue:
     build: ./Catalogue
-    image: joindevops/catalogue:4.0.0
+    image: roboshop/catalogue:v1
     container_name: catalogue
     depends_on:
       - mongodb
   frontend:
     build: ./frontend
-    image: joindevops/frontend:4.0.0
+    image: roboshop/frontend:v1
     container_name: frontend
     ports:
       - "80:80"
@@ -26,7 +26,7 @@ services:
       - payment
   user:
     build: ./user
-    image: joindevops/user:4.0.0
+    image: roboshop/user:v1
     container_name: user
     environment:
       MONGO: true
@@ -37,7 +37,7 @@ services:
       - mongodb
   cart:
     build: ./cart
-    image: joindevops/cart:4.0.0
+    image: roboshop/cart:v1
     container_name: cart
     environment:
       REDIS_HOST: redis
@@ -48,7 +48,7 @@ services:
       - catalogue
   shipping:
     build: ./shipping
-    image: joindevops/shipping:4.0.0
+    image: roboshop/shipping:v1
     container_name: shipping
     environment:
       CART_ENDPOINT: "cart:8080"
@@ -58,7 +58,7 @@ services:
       - cart
   payment:
     build: ./payment
-    image: joindevops/payment:4.0.0
+    image: roboshop/payment:v1
     container_name: payment
     environment:
       CART_HOST: "cart"
@@ -78,7 +78,7 @@ services:
     volumes:
       - redis:/data
   mysql:
-    image: joindevops/mysql:4.0.0
+    image: roboshop/mysql:v1
     build: ./mysql
     container_name: mysql
     command: --mysql-native-password=ON --innodb-lock_wait_timeout=120

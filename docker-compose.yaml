@@ -1,7 +1,7 @@
 name: roboshop
 services:
   mongodb:
-    build: ./Mongodb
+    build: ./MongoDb
     image: roboshop/mongodb:v1 # docker build -t joindevops/mongodb:4.0.0
     container_name: mongodb # docker run -d --network roboshop joindevops/mongodb:4.0.0
     volumes:

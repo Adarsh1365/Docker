@@ -7,7 +7,7 @@ services:
     volumes:
       - mongodb:/data/db # mongodb stores data in /data/db directory
   catalogue:
-    build: ./Catalogue
+    build: ./Catalouge
     image: roboshop/catalogue:v1
     container_name: catalogue
     depends_on:
